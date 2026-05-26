@@ -58,11 +58,12 @@ pipeline {
             }
         }
 
-        stage('Deploy Application Stack') {
+        stage('Simulate Deploy') {
             steps {
-                echo 'Deploying to staging environment using Docker Compose...'
-                sh "${DOCKER_COMPOSE} down"
-                sh "${DOCKER_COMPOSE} up -d --build"
+                echo 'CI/CD Best Practice: Images built successfully!'
+                echo 'Normally, we would push these images to Docker Hub or AWS ECR here.'
+                // sh "docker push devops-frontend:latest"
+                // sh "docker push devops-backend:latest"
             }
         }
     }
