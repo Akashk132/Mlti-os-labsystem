@@ -1,0 +1,28 @@
+---
+- name: Deploy AI Lab Environment
+  hosts: ai_lab
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install Python 3.11 and pip
+      apt:
+        name:
+          - python3.11
+          - python3-pip
+          - python3.11-venv
+        state: present
+
+    - name: Install AI Python packages
+      pip:
+        name:
+          - tensorflow
+          - jupyter
+          - numpy
+          - pandas
+          - scikit-learn
+        executable: pip3
+        state: present

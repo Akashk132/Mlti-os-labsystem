@@ -1,0 +1,11 @@
+---
+- name: Restart Service Ubuntu
+  hosts: ubuntu_nodes
+  become: yes
+  vars:
+    service_name: ""
+  tasks:
+    - name: Restart service
+      service:
+        name: "{{ service_name }}"
+        state: restarted

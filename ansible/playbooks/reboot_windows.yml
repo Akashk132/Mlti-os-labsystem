@@ -1,0 +1,6 @@
+---
+- name: Reboot Windows Node
+  hosts: windows_nodes
+  tasks:
+    - name: Reboot the machine
+      win_reboot:

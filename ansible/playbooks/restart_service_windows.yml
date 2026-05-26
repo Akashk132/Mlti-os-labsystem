@@ -1,0 +1,10 @@
+---
+- name: Restart Service Windows
+  hosts: windows_nodes
+  vars:
+    service_name: ""
+  tasks:
+    - name: Restart service
+      win_service:
+        name: "{{ service_name }}"
+        state: restarted

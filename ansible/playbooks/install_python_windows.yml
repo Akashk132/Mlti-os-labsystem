@@ -1,0 +1,17 @@
+---
+- name: Install Python on Windows
+  hosts: windows_nodes
+  tasks:
+    - name: Ensure Chocolatey is installed
+      win_shell: |
+        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+      args:
+        creates: C:\ProgramData\chocolatey\bin\choco.exe
+
+    - name: Install Python 3.11 via Chocolatey
+      win_chocolatey:
+        name: python311
+        state: present
+        
+    - name: Install Python packages
+      win_command: python -m pip install numpy pandas scikit-learn jupyter tensorflow

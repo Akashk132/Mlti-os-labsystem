@@ -1,0 +1,7 @@
+---
+- name: Reboot Ubuntu Node
+  hosts: ubuntu_nodes
+  become: yes
+  tasks:
+    - name: Reboot the machine
+      reboot:
